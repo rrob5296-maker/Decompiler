@@ -1,0 +1,16 @@
+# encrypt_payload.py
+from cryptography.fernet import Fernet
+import base64
+
+key = Fernet.generate_key()
+f = Fernet(key)
+
+with open("NecroScanner.dll", "rb") as f_in:
+    data = f_in.read()
+
+encrypted = f.encrypt(data)
+
+with open("payload.bin", "wb") as f_out:
+    f_out.write(encrypted)
+
+print("KEY:", key.decode())  # Save this motherfucker
